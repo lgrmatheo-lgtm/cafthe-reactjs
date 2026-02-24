@@ -352,7 +352,6 @@ input {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(30, 24, 20, 0.8) 0%, rgba(30, 24, 20, 0.35) 55%, rgba(30, 24, 20, 0.1) 100%);
 }
 
 .hero-content {
@@ -383,8 +382,7 @@ input {
 }
 
 .primary {
-    background: var(--accent);
-    color: #fff;
+    color: #ffffff;
     border-radius: 999px;
     padding: 10px 20px;
 }
@@ -952,7 +950,6 @@ input {
 }
 
 .price-old {
-    color: #b7aea8;
     text-decoration: line-through;
     font-size: 0.85rem;
 }
