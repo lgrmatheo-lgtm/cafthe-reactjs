@@ -1,18 +1,20 @@
-/**
+﻿/**
  * @file Cart.jsx
- * Role: Panier avant commande.
- * Comment c est fait: Affiche les lignes panier, applique code promo, calcule le total final et prepare le checkout.
+ * Role: Panier utilisateur.
+ * Comment c est fait: Affiche les lignes panier, applique code promo et calcule le total final.
  * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
  */
 import React, { useContext, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../context/authContext.jsx";
 import { CartContext } from "../context/cartContext.jsx";
 import { getDiscountedPrice, getDiscountPercent } from "../utils/discounts.js";
 import { getShippingCost } from "../utils/shipping.js";
 
 const Cart = () => {
     const navigate = useNavigate();
+    const { isAuthenticated } = useContext(AuthContext);
     const { items, addItem, decreaseItem, removeItem, totalPrice, totalItems } = useContext(CartContext);
     const [promoCode, setPromoCode] = useState("");
     const [promoApplied, setPromoApplied] = useState(null);
@@ -43,7 +45,7 @@ const Cart = () => {
                 <title>Mon panier | CafThe</title>
                 <meta
                     name="description"
-                    content="Consultez et modifiez votre panier CafThe avant de passer commande."
+                    content="Consultez et modifiez votre panier CafThe."
                 />
                 <meta name="robots" content="noindex, nofollow" />
             </Helmet>
@@ -144,19 +146,34 @@ const Cart = () => {
                         <span>Total TTC</span>
                         <span>{total.toFixed(2)} €</span>
                     </div>
-                    <button
-                        type="button"
-                        className="checkout"
-                        onClick={() => navigate("/commande/identification")}
-                    >
-                        Passer la commande
-                    </button>
+                    {isAuthenticated ? (
+                        <button
+                            type="button"
+                            className="checkout"
+                            onClick={() => navigate("/profil")}
+                        >
+                            Voir mon compte
+                        </button>
+                    ) : (
+                        <>
+                            <button
+                                type="button"
+                                className="checkout"
+                                onClick={() => navigate("/login")}
+                            >
+                                Se connecter
+                            </button>
+                            <button type="button" className="continue" onClick={() => navigate("/inscription")}>
+                                Créer un compte
+                            </button>
+                        </>
+                    )}
                     <button type="button" className="continue" onClick={() => navigate("/catalogue")}>
                         Continuer mes achats
                     </button>
                     <ul>
-                        <li>Paiement 100% sécurisé</li>
-                        <li>Livraison rapide</li>
+                        <li>Connexion requise pour commander</li>
+                        <li>Support client disponible</li>
                         <li>Retour gratuit sous 30 jours</li>
                     </ul>
                 </aside>

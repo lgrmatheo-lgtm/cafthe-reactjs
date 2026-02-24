@@ -1,9 +1,3 @@
-/**
- * @file Navbar.jsx
- * Role: Navigation sticky avec recherche, compte et mini panier.
- * Comment c est fait: Synchronise les actions utilisateur avec les contextes (Auth, Cart, Search) et gere les menus via etats locaux.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext.jsx";
@@ -210,7 +204,13 @@ const Navbar = () => {
                                             <button type="button" onClick={() => decreaseItem(item.key ?? item.id)}>-</button>
                                             <span>{item.quantity}</span>
                                             <button type="button" onClick={() => addItem(item)}>+</button>
-                                            <button type="button" onClick={() => removeItem(item.key ?? item.id)}>Retirer</button>
+                                            <button
+                                                type="button"
+                                                className="remove-item"
+                                                onClick={() => removeItem(item.key ?? item.id)}
+                                            >
+                                                Retirer
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -220,10 +220,10 @@ const Navbar = () => {
                     <div className="cart-footer">
                         <div className="cart-total">Total: {cartTotal} €</div>
                         <div className="cart-footer-actions">
-                            <button type="button" onClick={clear} className="ghost">Vider</button>
+                            <button type="button" onClick={clear} className="ghost clear-cart">Vider</button>
                             <button
                                 type="button"
-                                className="ghost"
+                                className="primary view-cart"
                                 onClick={() => {
                                     navigate("/panier");
                                     setIsCartOpen(false);
@@ -235,11 +235,11 @@ const Navbar = () => {
                                 type="button"
                                 className="primary"
                                 onClick={() => {
-                                    navigate("/commande/identification");
+                                    navigate(isAuthenticated ? "/profil" : "/login");
                                     setIsCartOpen(false);
                                 }}
                             >
-                                Commander
+                                {isAuthenticated ? "Mon compte" : "Se connecter"}
                             </button>
                         </div>
                     </div>

@@ -8,7 +8,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import RouteSeo from "../components/RouteSeo.jsx";
 
 /*
 Structure
@@ -20,7 +19,6 @@ Structure
 const Layout = () => {
     return (
         <div className="app-shell">
-            <RouteSeo />
             <Navbar />
             <div className="app-content">
                 <Outlet />

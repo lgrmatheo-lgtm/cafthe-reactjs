@@ -5,10 +5,6 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Account from "./pages/Account.jsx";
 import Cart from "./pages/Cart.jsx";
-import CheckoutIdentification from "./pages/CheckoutIdentification.jsx";
-import CheckoutLivraison from "./pages/CheckoutLivraison.jsx";
-import CheckoutPaiement from "./pages/CheckoutPaiement.jsx";
-import CheckoutConfirmation from "./pages/CheckoutConfirmation.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx";
 import Layout from "./layout/Layout.jsx";
 import Home from "./pages/Home.jsx";
@@ -56,10 +52,6 @@ function App() {
                                 <Route path="inscription" element={<Register />} />
                                 <Route path="profil" element={<Account />} />
                                 <Route path="panier" element={<Cart />} />
-                                <Route path="commande/identification" element={<CheckoutIdentification />} />
-                                <Route path="commande/livraison" element={<CheckoutLivraison />} />
-                                <Route path="commande/paiement" element={<CheckoutPaiement />} />
-                                <Route path="commande/confirmation" element={<CheckoutConfirmation />} />
                                 <Route path="profil/commande/:id" element={<OrderDetails />} />
                             </Route>
                         </Routes>

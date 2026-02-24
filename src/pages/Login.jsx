@@ -83,6 +83,9 @@ const Login = () => {
                                 onChange={(e) => setMotDePasse(e.target.value)}
                             />
                         </label>
+                        <Link to="/contact" className="auth-forgot">
+                            Mot de passe oublié ?
+                        </Link>
 
                         {errorMsg && <div className="error-message">{errorMsg}</div>}
 

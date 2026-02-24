@@ -88,6 +88,9 @@ const Register = () => {
                             />
                             <span className="auth-hint">Au moins 8 caractères</span>
                         </label>
+                        <Link to="/contact" className="auth-forgot">
+                            Mot de passe oublié ?
+                        </Link>
 
                         {errorMsg && <div className="error-message">{errorMsg}</div>}
 
