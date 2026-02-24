@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: CafThé API
+  version: 2.0.0
+servers:
+  - url: https://api.cafthe.local
+paths:
+  /api/articles:
+    get:
+      summary: Lister les produits
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Créer un produit (vendeur/admin)
+      responses:
+        '201':
+          description: Créé
+  /api/articles/{id}:
+    get:
+      summary: Détail produit
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+    patch:
+      summary: Mettre à jour un produit
+      responses:
+        '200':
+          description: OK
+  /api/clients/register:
+    post:
+      summary: Inscription client
+      responses:
+        '201':
+          description: Créé
+  /api/clients/login:
+    post:
+      summary: Connexion client
+      responses:
+        '200':
+          description: Connecté
+  /api/clients/me:
+    get:
+      summary: Profil client courant
+      responses:
+        '200':
+          description: OK
+  /api/commandes:
+    post:
+      summary: Créer commande
+      responses:
+        '201':
+          description: Créé
+    get:
+      summary: Lister commandes (vendeur/admin)
+      responses:
+        '200':
+          description: OK
+  /api/commandes/{id}/status:
+    patch:
+      summary: Mettre à jour statut commande
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
