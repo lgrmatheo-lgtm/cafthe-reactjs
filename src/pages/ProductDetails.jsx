@@ -5,12 +5,20 @@
  * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
  */
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet-async";
 import { CartContext } from "../context/cartContext.jsx";
 import { getDiscountPercent, getDiscountedPrice } from "../utils/discounts.js";
 import { getProductImage } from "../utils/productImages.js";
+import "../styles/ProductDetails.css";
+
+const WEIGHT_MULTIPLIERS = {
+    "100g": 0.4,
+    "250g": 1,
+    "500g": 2,
+    "1kg": 4,
+};
 
 const normalizeProduct = (produit) => {
     const id = produit.id_article ?? produit.id ?? produit.id_articles ?? produit._id;
@@ -21,7 +29,7 @@ const normalizeProduct = (produit) => {
         produit.categorie ??
         produit.type ??
         produit.famille ??
-        "CatÃ©gorie";
+        "Catégorie";
     const origin =
         produit.origine ??
         produit.pays ??
@@ -45,6 +53,7 @@ const normalizeProduct = (produit) => {
 
 const ProductDetails = () => {
     const { id } = useParams();
+    const location = useLocation();
     const { addItem } = useContext(CartContext);
 
     const [produit, setProduit] = useState(null);
@@ -54,22 +63,52 @@ const ProductDetails = () => {
     const [selectedWeight, setSelectedWeight] = useState("250g");
     const [quantity, setQuantity] = useState(1);
 
+    const productFromNavigationState = useMemo(() => {
+        const stateProduct = location.state?.product;
+        if (!stateProduct) return null;
+
+        const normalized = normalizeProduct(stateProduct.raw ?? stateProduct);
+        if (String(normalized.id) !== String(id)) return null;
+        return normalized;
+    }, [location.state, id]);
+
+    useEffect(() => {
+        setSelectedWeight("250g");
+        setQuantity(1);
+    }, [id]);
+
     useEffect(() => {
         const fetchProduit = async () => {
             try {
                 setIsLoading(true);
                 setError(null);
 
-                const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/api/articles/${id}`,
-                );
-
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP ${response.status}`);
+                if (productFromNavigationState) {
+                    setProduit(productFromNavigationState);
+                    return;
                 }
 
-                const data = await response.json();
-                setProduit(normalizeProduct(data.article));
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/articles/${id}`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setProduit(normalizeProduct(data.article ?? data));
+                    return;
+                }
+
+                const listResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/articles`);
+                if (!listResponse.ok) {
+                    throw new Error(`Erreur HTTP ${response.status}`);
+                }
+                const listData = await listResponse.json();
+                const list = (listData.article ?? listData.articles ?? []).map(normalizeProduct);
+                const matched = list.find((item) => String(item.id) === String(id));
+
+                if (!matched) {
+                    throw new Error(`Produit introuvable (${id})`);
+                }
+
+                setProduit(matched);
             } catch (err) {
                 console.error("Erreur lors du chargement du produit :", err);
                 setError("Impossible de charger le produit");
@@ -79,7 +118,7 @@ const ProductDetails = () => {
         };
 
         void fetchProduit();
-    }, [id]);
+    }, [id, productFromNavigationState]);
 
     useEffect(() => {
         const fetchRelated = async () => {
@@ -90,17 +129,32 @@ const ProductDetails = () => {
                 const items = (data.article ?? data.articles ?? []).map(normalizeProduct);
                 setRelated(items.filter((item) => String(item.id) !== String(id)).slice(0, 3));
             } catch (err) {
-                console.error("Erreur lors du chargement des produits complÃ©mentaires :", err);
+                console.error("Erreur lors du chargement des produits complémentaires :", err);
             }
         };
 
         void fetchRelated();
     }, [id]);
 
-    const totalPrice = useMemo(() => {
+    const weightMultiplier = useMemo(
+        () => WEIGHT_MULTIPLIERS[selectedWeight] ?? 1,
+        [selectedWeight]
+    );
+
+    const unitBasePrice = useMemo(() => {
         if (!produit) return 0;
-        return getDiscountedPrice(produit.price, produit.id) * quantity;
-    }, [produit, quantity]);
+        return produit.price * weightMultiplier;
+    }, [produit, weightMultiplier]);
+
+    const unitDiscountedPrice = useMemo(() => {
+        if (!produit) return 0;
+        return getDiscountedPrice(unitBasePrice, produit.id);
+    }, [produit, unitBasePrice]);
+
+    const totalPrice = useMemo(
+        () => unitDiscountedPrice * quantity,
+        [unitDiscountedPrice, quantity]
+    );
 
     if (isLoading) {
         return (
@@ -125,7 +179,7 @@ const ProductDetails = () => {
                     <h3> Une erreur est survenue</h3>
                     <p>{error}</p>
                     <Link to="/" className="back-link">
-                        Retour Ã  l'accueil
+                        Retour à l'accueil
                     </Link>
                 </div>
             </div>
@@ -137,7 +191,7 @@ const ProductDetails = () => {
     }
 
     const discount = getDiscountPercent(produit.id);
-    const discountedPrice = getDiscountedPrice(produit.price, produit.id);
+    const discountedPrice = unitDiscountedPrice;
     const pageTitle = `${produit.name} | CafThe`;
     const shortDescription = produit.description
         ? `${produit.description.slice(0, 145)}${produit.description.length > 145 ? "..." : ""}`
@@ -154,23 +208,18 @@ const ProductDetails = () => {
             <section className="product-hero">
                 <div className="product-gallery">
                     <img src={produit.image} alt={produit.name} className="product-main" />
-                    <div className="product-thumbs">
-                        <img src={produit.image} alt="aperÃ§u" />
-                        <div className="thumb-placeholder" />
-                        <div className="thumb-placeholder" />
-                    </div>
                 </div>
                 <div className="product-info">
                     <span className="product-category">{produit.category}</span>
                     <h1>{produit.name}</h1>
                     <div className="product-price">
                         {discount > 0 && (
-                            <span className="price-old">{produit.price.toFixed(2)} â‚¬</span>
+                            <span className="price-old">{unitBasePrice.toFixed(2)} €</span>
                         )}
-                        <span className="price-new">{discountedPrice.toFixed(2)} â‚¬</span>
-                        <span className="price-note">Stock {produit.stock} unitÃ©s</span>
+                        <span className="price-new">{discountedPrice.toFixed(2)} €</span>
+                        <span className="price-note">Stock {produit.stock} unités</span>
                     </div>
-                    <p>{produit.description || "Un cafÃ© ou thÃ© d'exception, sÃ©lectionnÃ© pour son profil aromatique unique."}</p>
+                    <p>{produit.description || "Un café ou thé d'exception, sélectionné pour son profil aromatique unique."}</p>
 
                     <div className="product-weights">
                         {"100g 250g 500g 1kg".split(" ").map((weight) => (
@@ -199,22 +248,22 @@ const ProductDetails = () => {
                                     addItem({
                                         id: produit.id,
                                         name: produit.name,
-                                        price: produit.price,
+                                        price: unitBasePrice,
                                         image: produit.image,
                                         variant: selectedWeight,
                                     });
                                 }
                             }}
                         >
-                            Ajouter au panier ({totalPrice.toFixed(2)} â‚¬)
+                            Ajouter au panier ({totalPrice.toFixed(2)} €)
                         </button>
                     </div>
-                    <div className="price-note">Prix calculÃ© selon quantitÃ©.</div>
+                    <div className="price-note">Prix calculé selon poids et quantité.</div>
 
                     <ul className="product-highlights">
                         <li>Origine: {produit.origin}</li>
-                        <li>TorrÃ©faction artisanale</li>
-                        <li>Livraison offerte dÃ¨s 50 â‚¬</li>
+                        <li>Torréfaction artisanale</li>
+                        <li>Livraison offerte dès 50 €</li>
                     </ul>
                 </div>
             </section>
@@ -226,14 +275,14 @@ const ProductDetails = () => {
                 </div>
                 <div className="reviews-grid">
                     {[
-                        "Un profil aromatique dÃ©licat, parfait pour le matin.",
-                        "TrÃ¨s bon Ã©quilibre, livraison rapide et soignÃ©e.",
-                        "GoÃ»t authentique, je recommande vivement.",
+                        "Un profil aromatique délicat, parfait pour le matin.",
+                        "Très bon équilibre, livraison rapide et soignée.",
+                        "Goût authentique, je recommande vivement.",
                     ].map((review, index) => (
                         <div key={index} className="review-card">
-                            <div className="review-rating">â˜…â˜…â˜…â˜…â˜…</div>
+                            <div className="review-rating">?????</div>
                             <p>{review}</p>
-                            <span>Client vÃ©rifiÃ©</span>
+                            <span>Client vérifié</span>
                         </div>
                     ))}
                 </div>
@@ -241,7 +290,7 @@ const ProductDetails = () => {
 
             <section className="product-related">
                 <div className="section-header">
-                    <h2>Produits complÃ©mentaires</h2>
+                    <h2>Produits complémentaires</h2>
                     <button type="button" className="section-link">Voir plus</button>
                 </div>
                 <div className="related-grid">
@@ -249,15 +298,20 @@ const ProductDetails = () => {
                         const relatedDiscount = getDiscountPercent(item.id);
                         const relatedPrice = getDiscountedPrice(item.price, item.id);
                         return (
-                            <Link key={item.id} to={`/produit/${item.id}`} className="related-card">
+                            <Link
+                                key={item.id}
+                                to={`/produit/${item.id}`}
+                                state={{ product: item }}
+                                className="related-card"
+                            >
                                 <img src={item.image} alt={item.name} />
                                 <div>
                                     <h3>{item.name}</h3>
                                     <span className="price-stack">
                                         {relatedDiscount > 0 && (
-                                            <span className="price-old">{item.price.toFixed(2)} â‚¬</span>
+                                            <span className="price-old">{item.price.toFixed(2)} €</span>
                                         )}
-                                        <span className="price-new">{relatedPrice.toFixed(2)} â‚¬</span>
+                                        <span className="price-new">{relatedPrice.toFixed(2)} €</span>
                                     </span>
                                 </div>
                                 <button type="button">Ajouter</button>
@@ -271,3 +325,9 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+
+
+
+
+

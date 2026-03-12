@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/MentionsLegales.css";
 
 const MentionsLegales = () => {
     return (
@@ -39,3 +40,6 @@ const MentionsLegales = () => {
 };
 
 export default MentionsLegales;
+
+
+

@@ -7,6 +7,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import ProductCard from "../components/ProductCard.jsx";
+import "../styles/ProductList.css";
 
 const ProductList = () => {
     const [produits, setProduits] = useState([]);
@@ -90,3 +91,6 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+
+

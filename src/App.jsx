@@ -1,11 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Account from "./pages/Account.jsx";
 import Cart from "./pages/Cart.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx";
+import CheckoutLivraison from "./pages/CheckoutLivraison.jsx";
+import CheckoutPaiement from "./pages/CheckoutPaiement.jsx";
+import CheckoutConfirmation from "./pages/CheckoutConfirmation.jsx";
 import Layout from "./layout/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import Catalogue from "./pages/Catalogue.jsx";
@@ -52,6 +55,10 @@ function App() {
                                 <Route path="inscription" element={<Register />} />
                                 <Route path="profil" element={<Account />} />
                                 <Route path="panier" element={<Cart />} />
+                                <Route path="checkout" element={<Navigate to="/checkout/livraison" replace />} />
+                                <Route path="checkout/livraison" element={<CheckoutLivraison />} />
+                                <Route path="checkout/paiement" element={<CheckoutPaiement />} />
+                                <Route path="checkout/confirmation" element={<CheckoutConfirmation />} />
                                 <Route path="profil/commande/:id" element={<OrderDetails />} />
                             </Route>
                         </Routes>

@@ -6,6 +6,7 @@
  */
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/Footer.css";
 
 const Footer = () => {
     return (
@@ -33,13 +34,6 @@ const Footer = () => {
                     <Link to="/contact">Contact</Link>
                     <Link to="/mentions-legales">Mentions légales</Link>
                 </div>
-                <div className="footer-column">
-                    <h4>Admin</h4>
-                    <p>Accès réservé aux vendeurs.</p>
-                    <Link to="/dashboard" className="footer-pill">
-                        Dashboard <span>›</span>
-                    </Link>
-                </div>
             </div>
             <div className="footer-bottom">
                 <span>© 2026 CafThé. Tous droits réservés.</span>
@@ -52,4 +46,8 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default Footer;
+
+
+
+

@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/Privacy.css";
 
 const Privacy = () => {
     return (
@@ -39,3 +40,6 @@ const Privacy = () => {
 };
 
 export default Privacy;
+
+
+

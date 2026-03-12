@@ -1,0 +1,310 @@
+# Charte Graphique - CafThe
+
+Version: mars 2026  
+Perimetre: site e-commerce CafThe (front React actuel)
+
+## 1. Presentation de la marque
+
+CafThe est une marque de cafes et thes premium, orientee experience de degustation et relation de confiance.
+
+L'identite visuelle du site actuel repose sur:
+- un positionnement elegant et haut de gamme
+- un univers artisanal et naturel
+- une interface chaleureuse, lisible et moderne
+
+La charte s'applique en priorite au digital:
+- site e-commerce (home, catalogue, fiche produit, panier, checkout, compte)
+- pages editoriales (FAQ, contact, legal)
+- espace dashboard
+
+Objectif:
+- identite simple
+- coherence visuelle globale
+- reconnaissance immediate
+- durabilite dans le temps
+
+## 2. Le logo
+
+### Assets existants
+- Logo vectoriel principal: `public/logo-cafthe.svg`
+- Logo utilise dans la navbar: `public/logo_sans_background.png` (612 x 408 px, affiche a 180 x 180 px)
+
+### Concept visuel
+Le logo combine:
+- typographie elegante "CafThe"
+- univers cafe/the (grain + feuille stylises)
+- codes premium naturels
+
+Dans la version SVG, le symbole utilise un degrade:
+- vert: `#0f8f4a`
+- caramel: `#b28b6a`
+
+### Zone de protection
+- Marge minimale recommandee autour du logo: `16px`
+- Aucun texte, icone ou bloc ne doit entrer dans cette zone
+
+### Lisibilite et usages interdits
+Le logo ne doit jamais etre:
+- deforme
+- etire
+- incline
+- recolore hors palette de marque
+- place sur un fond qui detruit le contraste
+
+### Version noir et blanc
+- Aucune version NB dediee n'est encore stockee dans `public/`
+- Recommandation: exporter une declinaison monochrome pour impression et supports a faible contraste
+
+## 3. Favicon
+
+### Version actuellement en production
+- Reference HTML: `index.html`
+- Fichier: `public/favicon.png`
+- Format: PNG (`image/png`)
+- Taille source: `100 x 100 px`
+
+### Usage
+Le favicon est affiche dans:
+- onglets navigateur
+- favoris
+- certaines interfaces de raccourcis web
+
+### Recommandation de diffusion
+- Conserver la source 100x100 pour nettete
+- Exporter en plus `32x32` et `16x16`
+- Optionnel: ajouter une version SVG si besoin multi-support
+
+## 4. Palette de couleurs
+
+### Mode clair (theme principal)
+Tokens declares dans `src/index.css`:
+
+- `--bg`: `#f6f3f1` (fond global)
+- `--surface`: `#ffffff` (cartes, panneaux)
+- `--dark`: `#1f1a17` (texte principal)
+- `--muted`: `#6f625c` (texte secondaire)
+- `--accent`: `#b28b6a` (accent marque / CTA light)
+- `--accent-dark`: `#9a7355` (hover accent)
+- `--border`: `#e1d9d3` (contours UI)
+
+Couleurs structurelles complementaires:
+- footer: `#0f0d0c`
+- fond recherche navbar: `#efeeee`
+
+### Mode sombre
+Active via `html[data-theme="dark"]`:
+
+- `--bg`: `#0f1317`
+- `--surface`: `#171c22`
+- `--dark`: `#f2eee8`
+- `--muted`: `#b7b0a9`
+- `--accent`: `#1f6a46`
+- `--accent-dark`: `#18573a`
+- `--border`: `#313944`
+
+Couleurs structurelles dark:
+- fond navbar dark: `#141920`
+- fond champs dark: `#10151b`
+- zone secondaire dark (boutons ghost, recherche): `#252c35`
+
+### Couleurs d'etat interface
+- Succes / validation: `#0f8f4a`
+- Succes secondaire (prix/retours positifs): `#128548`
+- Information: `#3b6bd6`
+- Erreur / alerte: `#c83a3a`
+- Erreur secondaire (promo): `#d64848`
+
+## 5. Typographies
+
+Deux familles sont utilisees globalement:
+
+### Titres
+- Police: `Cormorant Garamond`
+- Graisses chargees: `400`, `500`, `600`
+- Usages: H1/H2, titres de sections, hero, titres de cartes editoriales
+
+### Texte courant
+- Police: `Manrope`
+- Graisses chargees: `300`, `400`, `500`, `600`
+- Usages: paragraphes, navigation, boutons, formulaires, UI utilitaire
+
+### Echelle typographique observee
+- H1 hero: `clamp(2rem, 3vw, 3.2rem)`
+- Titre catalogue: `2.4rem`
+- UI secondaire: `0.75rem` a `0.95rem`
+
+## 6. Principes d'interface
+
+### Structure
+- Navigation sticky en haut (desktop)
+- Shell vertical: navbar / contenu / footer
+- Mise en page aeree avec marges laterales larges (48-56 px desktop)
+- Breakpoints principaux: `1024px`, `1000px`, `768px`
+
+### Boutons
+Primaire (`.primary`):
+- fond light: `#b28b6a`
+- texte: `#ffffff`
+- forme: pill (`border-radius: 999px`)
+- hover light: `#9a7355` + levee verticale legere
+
+Primaire en dark:
+- fond: `#1f6a46`
+- hover: `#18573a`
+
+Secondaire (`.ghost`):
+- fond transparent
+- bordure selon contexte (blanc translucide ou `--border`)
+- hover: variation de fond + levee legere
+
+### Cartes produit
+Catalogue (`.catalogue-card`):
+- fond `--surface`
+- rayon `18px`
+- ombre legere
+- hover: `translateY(-4px)` + ombre renforcee
+
+Selection home (`.selection-card`):
+- fond `--surface`
+- rayon `18px`
+- hover: `translateY(-3px)`
+
+### Champs/formulaires
+- fond light: `#faf9f8`
+- bordure: tons beiges clairs (`#ece7e3` / `--border`)
+- rayon courant: `10px`
+- dark mode: fond `#10151b`, bordure `--border`
+
+### Rayons de coins (systeme)
+- pills/actions: `999px`
+- inputs/boutons standards: `10px`
+- cartes secondaires: `14px`
+- cartes principales: `16-18px`
+- grands panneaux/hero info/auth: `22px+`
+
+### Ombres
+- Ombre principale token: `0 20px 40px rgba(20, 15, 12, 0.12)`
+- Ombres cartes: variantes plus legeres (`0 10px 20px` a `0 16px 30px`)
+- Dark: ombres renforcees pour profondeur (`rgba(0,0,0,0.35+)`)
+
+## 7. Style visuel
+
+Le style image suit ces principes:
+- photos naturelles et texturees (grains, feuilles, accessoires)
+- lumiere chaude et ambiance artisanale
+- hero avec overlay pour garantir la lisibilite du texte
+- visuels immersifs sur cartes (crop large + effet zoom discret au survol)
+
+Le ton global doit rester:
+- premium
+- chaleureux
+- authentique
+
+## 8. Objectif de la charte graphique
+
+Cette charte garantit une coherence visuelle sur:
+- le site e-commerce
+- les supports marketing digitaux
+- les declinaisons social media
+- les supports futurs (print/packaging)
+
+Reference technique actuelle:
+- styles et tokens: `src/index.css`
+- favicon web: `index.html` + `public/favicon.png`
+- logo navbar: `src/components/Navbar.jsx`
+
+Regle de maintenance:
+- toute evolution de token couleur, typo ou composant majeur doit mettre a jour ce document.
+
+## 13. CHARTE GRAPHIQUE
+
+### 13.1. Logo
+
+- Logo principal (vectoriel): `public/logo-cafthe.svg`
+- Logo navbar (raster): `public/logo_sans_background.png`
+- Zone de protection minimale: `16px` autour du bloc logo
+- Taille d'affichage web actuelle navbar: `180 x 180 px`
+- Usages interdits: deformation, etirement, rotation, recoloration hors palette, pose sur fond peu lisible
+- Favicon associe: `public/favicon.png` (100 x 100 px source)
+
+### 13.2. Palette de couleurs
+
+Mode clair (principal):
+- Fond global: `#f6f3f1` (`--bg`)
+- Surface: `#ffffff` (`--surface`)
+- Texte principal: `#1f1a17` (`--dark`)
+- Texte secondaire: `#6f625c` (`--muted`)
+- Accent marque: `#b28b6a` (`--accent`)
+- Accent hover: `#9a7355` (`--accent-dark`)
+- Bordure: `#e1d9d3` (`--border`)
+
+Mode sombre:
+- Fond global: `#0f1317`
+- Surface: `#171c22`
+- Texte principal: `#f2eee8`
+- Texte secondaire: `#b7b0a9`
+- Accent marque: `#1f6a46`
+- Accent hover: `#18573a`
+- Bordure: `#313944`
+
+Couleurs d'etat:
+- Succes: `#0f8f4a`
+- Information: `#3b6bd6`
+- Erreur: `#c83a3a`
+
+### 13.3. Typographie
+
+- Titres: `Cormorant Garamond` (400, 500, 600)
+- Texte courant/UI: `Manrope` (300, 400, 500, 600)
+Hierarchie type:
+- Hero H1: `clamp(2rem, 3vw, 3.2rem)`
+- Titre catalogue: `2.4rem`
+- Texte UI secondaire: `0.75rem` a `0.95rem`
+- Regle: titres en serif, contenus et actions en sans-serif pour lisibilite e-commerce
+
+### 13.4. Iconographie & Illustrations
+
+Iconographie:
+- Style principal: icones lineaires SVG inline (navbar)
+- Grille: `24 x 24`
+- Trait: `stroke-width: 1.6`, caps/joints arrondis
+- Couleur: heritee du theme (`currentColor`)
+
+Illustrations/visuels:
+- Hero et univers: photos immersives, ambiance chaude, contraste texte assure par overlay
+- Produits: visuels recadres, focus matiere/texture
+- Assets image: `public/img/products/*` et `public/img/site/*`
+- Effets: zoom discret au survol sur cartes (`transform` leger)
+
+### 13.5. Composants UI
+
+Composants structurants:
+- Navbar sticky avec recherche, theme toggle, compte, panier
+- Footer multi-colonnes
+- Cartes catalogue et cartes selection
+- Drawer panier
+- Formulaires auth/checkout/profil/dashboard
+
+Regles UI:
+- Bouton primaire: fond accent, texte blanc, rayon `999px`, hover assombri + elevation legere
+- Bouton secondaire ghost: transparent + bordure, hover doux
+- Cartes: fond `--surface`, rayon `14-18px`, ombre legere
+- Inputs/select: fond clair `#faf9f8`, bordure douce, rayon `10px`
+- Badges et etats: statut (ok/muted), remises, feedback formulaire (success/error)
+
+### 13.6. Responsive & Accessibilite
+
+Responsive:
+- Breakpoints actifs: `1024px`, `1000px`, `960px`, `900px`, `768px`
+Adaptations:
+- navbar passe en layout vertical centree sous `960px`
+- grilles catalogue/dashboard passent en colonnes reduites puis 1 colonne
+- marges laterales reduites sur mobile (`20px`)
+- drawer panier limite a `min(90vw, 360px)` sur ecrans reduits
+
+Accessibilite:
+- Attributs ARIA presents sur actions critiques (recherche, theme, compte, panier, suppression)
+- Etats ouverts/fermes annonces via `aria-expanded` (compte/panier)
+- Light/dark mode pour confort visuel
+- Recommandation de conformite: conserver un contraste minimum WCAG AA (4.5:1) sur textes et actions
+- Recommandation UX: garder des zones cliquables confortables (>= 44 px sur mobile)

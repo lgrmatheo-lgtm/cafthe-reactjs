@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/Faq.css";
 
 const Faq = () => {
     return (
@@ -44,3 +45,6 @@ const Faq = () => {
 };
 
 export default Faq;
+
+
+

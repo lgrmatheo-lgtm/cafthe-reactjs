@@ -7,6 +7,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/authContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 const Login = () => {
     const { login } = useContext(AuthContext);
@@ -105,3 +106,6 @@ const Login = () => {
 };
 
 export default Login;
+
+
+

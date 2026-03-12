@@ -1,0 +1,332 @@
+html[data-theme="dark"] .auth-checkbox label {
+    color: var(--muted);
+}
+
+html[data-theme="dark"] {
+    --bg: #0f1317;
+    --surface: #171c22;
+    --dark: #f2eee8;
+    --muted: #b7b0a9;
+    --accent: #1f6a46;
+    --accent-dark: #18573a;
+    --border: #313944;
+    --shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="dark"] body {
+    background: var(--bg);
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .navbar {
+    background: #141920;
+    border-bottom-color: var(--border);
+}
+
+html[data-theme="dark"] .navbar-search {
+    background: #252c35;
+}
+
+html[data-theme="dark"] .navbar-link,
+html[data-theme="dark"] .navbar-icon,
+html[data-theme="dark"] .navbar-cart-icon,
+html[data-theme="dark"] .navbar-search .icon,
+html[data-theme="dark"] .navbar-search .icon-button,
+html[data-theme="dark"] .section-link,
+html[data-theme="dark"] .theme-toggle {
+    color: #fff;
+}
+
+html[data-theme="dark"] .selection-link,
+html[data-theme="dark"] .navbar-link {
+    text-decoration: none;
+    position: relative;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+html[data-theme="dark"] .selection-link::after,
+html[data-theme="dark"] .navbar-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 65%;
+    height: 2px;
+    background: var(--muted);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+html[data-theme="dark"] .selection-link:hover:after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+html[data-theme="dark"] .selection-link:hover {
+    color: #b7b0a98c;
+    transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .navbar-link {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+}
+
+html[data-theme="dark"] .navbar-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 65%;
+    height: 2px;
+    background: #1f6a46;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+html[data-theme="dark"] .navbar-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+html[data-theme="dark"] .navbar-link:hover {
+    color: #ffffff85;
+    transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .navbar-search input {
+    background-color: #252c35;
+}
+
+html[data-theme="dark"] .navbar-search input::placeholder {
+    color: #95a0ab;
+}
+
+html[data-theme="dark"] .theme-toggle {
+    background: #252c35;
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] .cart-count {
+    background: var(--accent);
+}
+
+html[data-theme="dark"] .account-dropdown,
+html[data-theme="dark"] .cart-drawer,
+html[data-theme="dark"] .selection-card,
+html[data-theme="dark"] .benefit,
+html[data-theme="dark"] .info-hero,
+html[data-theme="dark"] .info-card,
+html[data-theme="dark"] .auth-form,
+html[data-theme="dark"] .cart-item-card,
+html[data-theme="dark"] .promo-card,
+html[data-theme="dark"] .cart-summary,
+html[data-theme="dark"] .cart-empty-state,
+html[data-theme="dark"] .account-sidebar,
+html[data-theme="dark"] .account-panel,
+html[data-theme="dark"] .address-form,
+html[data-theme="dark"] .checkout-card,
+html[data-theme="dark"] .checkout-summary,
+html[data-theme="dark"] .checkout-empty,
+html[data-theme="dark"] .order-details-card,
+html[data-theme="dark"] .dashboard-auth-card,
+html[data-theme="dark"] .dashboard-sidebar,
+html[data-theme="dark"] .dashboard-section,
+html[data-theme="dark"] .alert-box,
+html[data-theme="dark"] .dashboard-card,
+html[data-theme="dark"] .kpi-card,
+html[data-theme="dark"] .summary-block div,
+html[data-theme="dark"] .shipping-options button,
+html[data-theme="dark"] .payment-methods button,
+html[data-theme="dark"] .delivery-modes button,
+html[data-theme="dark"] .dashboard-sidebar button {
+    background: var(--surface);
+    color: var(--dark);
+    border-color: var(--border);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .account-dropdown button,
+html[data-theme="dark"] .cart-item-actions button,
+html[data-theme="dark"] .cart-footer-actions .ghost,
+html[data-theme="dark"] .cart-qty button,
+html[data-theme="dark"] .address-actions button,
+html[data-theme="dark"] .dashboard-sidebar button {
+    background: #252c35;
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .cart-footer-actions .ghost:hover {
+    background: #971111;
+}
+
+html[data-theme="dark"] .address-actions .danger {
+    color: #f5b6b6;
+}
+
+html[data-theme="dark"] .checkout-steps .step {
+    background: #2b323a;
+    color: #9ba6b2;
+}
+
+html[data-theme="dark"] .checkout-step-labels .active {
+    color: var(--accent);
+}
+
+html[data-theme="dark"] .checkout-actions .ghost,
+html[data-theme="dark"] .confirm-actions .ghost {
+    background: #252c35;
+    border-color: var(--border);
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .checkout-step-labels,
+html[data-theme="dark"] .summary-row,
+html[data-theme="dark"] .price-old,
+html[data-theme="dark"] .catalogue-origin,
+html[data-theme="dark"] .dashboard-header p,
+html[data-theme="dark"] .dashboard-list li,
+html[data-theme="dark"] .footer-bottom,
+html[data-theme="dark"] .auth-subtitle,
+html[data-theme="dark"] .auth-hint {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .auth-forgot {
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .price-new,
+html[data-theme="dark"] .price-total,
+html[data-theme="dark"] .summary-total,
+html[data-theme="dark"] .cart-total,
+html[data-theme="dark"] .account-name,
+html[data-theme="dark"] .dashboard-header h1,
+html[data-theme="dark"] .section-header h2 {
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .catalogue-pagination button,
+html[data-theme="dark"] .product-weights button,
+html[data-theme="dark"] .quantity,
+html[data-theme="dark"] .quantity button {
+    background: #252c35;
+    border-color: var(--border);
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .table-wrap,
+html[data-theme="dark"] .dashboard-table {
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .dashboard-table th,
+html[data-theme="dark"] .dashboard-table td {
+    border-bottom-color: #2a323b;
+}
+
+html[data-theme="dark"] .dashboard-table thead th {
+    color: #aeb8c3;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+    background: #10151b;
+    color: var(--dark);
+    border-color: var(--border);
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: #8e99a5;
+}
+
+html[data-theme="dark"] .footer {
+    border-top: 1px solid #20262d;
+}
+
+html[data-theme="dark"] button:not(.primary):not(.navbar-icon):not(.navbar-cart-icon):not(.icon-button):not(.theme-toggle):not(.section-link):not(.account-close) {
+    background: var(--border);
+    color: var(--dark);
+}
+
+html[data-theme="dark"] button:not(.primary):not(.navbar-icon):not(.navbar-cart-icon):not(.icon-button):not(.theme-toggle):not(.section-link):not(.account-close):hover {
+    color: var(--dark);
+    transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .primary,
+html[data-theme="dark"] .account-sidebar button.active,
+html[data-theme="dark"] .order-card button {
+    background: var(--accent) !important;
+    color: #ffffff;
+    border-color: transparent;
+}
+
+html[data-theme="dark"] .primary:hover,
+html[data-theme="dark"] .account-sidebar button.active:hover,
+html[data-theme="dark"] .order-card button:hover {
+    background: var(--accent-dark);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .selection-tag {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    color: #000000;
+    border-radius: 999px;
+    background: #e1d9d3;
+}
+
+html[data-theme="dark"] .auth-footer a, .auth-footer {
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .tracking-steps .done {
+    color: #1f6a46;
+}
+
+html[data-theme="dark"] .auth-footer a {
+    gap: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+html[data-theme="dark"] .auth-footer a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 65%;
+    height: 2px;
+    background: #1f6a46;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+html[data-theme="dark"] .auth-footer a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+html[data-theme="dark"] .auth-footer a:hover {
+    color: #ffffffb7;
+    transform: translateY(-1px);
+}
+
+html[data-theme="dark"] .modal-card {
+    box-shadow: 0 0 30px #1f6a46;
+    border: solid 1.5px #1f6a4642;
+    background-color: #171c22;
+    color: #fff;
+}
+
+html[data-theme="dark"] .ghost {
+    color: #fff;
+    border: 1px solid #fff;
+}

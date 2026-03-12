@@ -1,0 +1,253 @@
+.catalogue-page {
+    margin: 32px 48px 80px;
+    display: grid;
+    gap: 24px;
+}
+
+.catalogue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+.catalogue-header h1 {
+    margin: 6px 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+}
+
+.catalogue-sort {
+    display: grid;
+    gap: 6px;
+}
+
+.catalogue-sort select {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #fff;
+}
+
+.catalogue {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+}
+
+.catalogue-filters {
+    background: var(--surface);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 14px 30px rgba(22, 17, 14, 0.08);
+    display: grid;
+    gap: 20px;
+    height: fit-content;
+}
+
+.filters-header {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+}
+
+.filter-section {
+    display: grid;
+    gap: 8px;
+}
+
+.filter-section h4 {
+    margin: 0 0 4px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.filter-section label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.price-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.catalogue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.catalogue-card {
+    position: relative;
+    background: var(--surface);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 14px 30px rgba(22, 17, 14, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catalogue-card-placeholder {
+    background: #f4efeb;
+    border: 1px dashed var(--border);
+    min-height: 260px;
+    display: grid;
+    place-items: center;
+}
+
+.catalogue-card-placeholder:hover {
+    transform: translateY(-2px);
+}
+
+.catalogue-placeholder-content {
+    display: grid;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.quick-view {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: transparent;
+    color: var(--dark);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    border: 1px solid var(--border);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 7, 0.4);
+    display: grid;
+    place-items: center;
+    z-index: 30;
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    max-width: 640px;
+    box-shadow: 0 20px 40px rgba(20, 15, 12, 0.2);
+}
+
+.modal-card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+.modal-card h3 {
+    margin: 0 0 6px;
+}
+
+.modal-card p {
+    margin: 0 0 10px;
+    color: var(--muted);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.catalogue-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(22, 17, 14, 0.12);
+}
+
+.catalogue-card a {
+    color: inherit;
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+}
+
+.catalogue-image {
+    height: 180px;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.catalogue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.catalogue-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.catalogue-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.catalogue-origin {
+    color: var(--muted);
+}
+
+.catalogue-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.catalogue-pagination button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: #fff;
+}
+
+.catalogue-pagination button.active {
+    background: var(--dark);
+    color: #fff;
+    border-color: var(--dark);
+}
+
+@media (max-width: 1000px) {
+    .catalogue {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogue-filters {
+        position: static;
+    }
+
+    .catalogue-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .catalogue-page {
+        margin: 24px 20px 60px;
+    }
+
+    .catalogue-grid {
+        grid-template-columns: 1fr;
+    }
+}

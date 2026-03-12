@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/Contact.css";
 
 const Contact = () => {
     return (
@@ -39,3 +40,6 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+

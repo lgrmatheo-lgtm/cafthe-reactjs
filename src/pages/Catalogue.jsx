@@ -11,6 +11,7 @@ import { SearchContext } from "../context/searchContext.jsx";
 import { CartContext } from "../context/cartContext.jsx";
 import { getDiscountPercent, getDiscountedPrice } from "../utils/discounts.js";
 import { getProductImage } from "../utils/productImages.js";
+import "../styles/Catalogue.css";
 
 const normalizeProduct = (produit) => {
     const id = produit.id_article ?? produit.id ?? produit.id_articles ?? produit._id;
@@ -42,7 +43,7 @@ const normalizeProduct = (produit) => {
     };
 };
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 10;
 
 const Catalogue = () => {
     const { query } = useContext(SearchContext);
@@ -125,6 +126,14 @@ const Catalogue = () => {
         (page - 1) * ITEMS_PER_PAGE,
         page * ITEMS_PER_PAGE
     );
+    const emptySlots = Math.max(0, ITEMS_PER_PAGE - paginatedItems.length);
+    const displayItems = [
+        ...paginatedItems,
+        ...Array.from({ length: emptySlots }, (_, index) => ({
+            id: `placeholder-${page}-${index}`,
+            isPlaceholder: true,
+        })),
+    ];
 
     useEffect(() => {
         setPage(1);
@@ -144,7 +153,7 @@ const Catalogue = () => {
                     <Skeleton height={200} />
                 </aside>
                 <section className="catalogue-grid">
-                    {Array.from({ length: 6 }).map((_, index) => (
+                    {Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
                         <div key={index} className="catalogue-card">
                             <Skeleton height={180} />
                             <Skeleton height={20} style={{ marginTop: 12 }} />
@@ -237,12 +246,26 @@ const Catalogue = () => {
                 </aside>
 
                 <section className="catalogue-grid">
-                    {paginatedItems.map((item) => {
+                    {displayItems.map((item) => {
+                        if (item.isPlaceholder) {
+                            return (
+                                <article
+                                    key={item.id}
+                                    className="catalogue-card catalogue-card-placeholder"
+                                    aria-hidden="true"
+                                >
+                                    <div className="catalogue-placeholder-content">
+                                        Emplacement reserve
+                                    </div>
+                                </article>
+                            );
+                        }
+
                         const discount = getDiscountPercent(item.id);
                         const discountedPrice = getDiscountedPrice(item.price, item.id);
                         return (
                             <article key={item.id} className="catalogue-card">
-                                <Link to={`/produit/${item.id}`}>
+                                <Link to={`/produit/${item.id}`} state={{ product: item }}>
                                     <div className="catalogue-image">
                                         <img src={item.image} alt={item.name} />
                                     </div>
@@ -301,7 +324,13 @@ const Catalogue = () => {
                                 </span>
                             </div>
                             <div className="modal-actions">
-                                <Link to={`/produit/${quickView.id}`} className="ghost">Voir la fiche</Link>
+                                <Link
+                                    to={`/produit/${quickView.id}`}
+                                    state={{ product: quickView }}
+                                    className="ghost"
+                                >
+                                    Voir la fiche
+                                </Link>
                                 <button
                                     type="button"
                                     className="primary"
@@ -327,3 +356,6 @@ const Catalogue = () => {
 };
 
 export default Catalogue;
+
+
+

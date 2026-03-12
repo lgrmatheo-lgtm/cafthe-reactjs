@@ -8,6 +8,7 @@ import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDiscountedPrice } from "../utils/discounts.js";
 import { CartContext } from "../context/cartContext.jsx";
+import "../styles/OrderDetails.css";
 
 const OrderDetails = () => {
     const navigate = useNavigate();
@@ -81,3 +82,6 @@ const OrderDetails = () => {
 };
 
 export default OrderDetails;
+
+
+

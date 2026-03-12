@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/CafesSpecialite.css";
 
 const CafesSpecialite = () => {
     return (
@@ -39,3 +40,6 @@ const CafesSpecialite = () => {
 };
 
 export default CafesSpecialite;
+
+
+

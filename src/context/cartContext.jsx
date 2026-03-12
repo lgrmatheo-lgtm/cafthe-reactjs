@@ -1,9 +1,3 @@
-/**
- * @file cartContext.jsx
- * Role: Source de verite du panier.
- * Comment c est fait: Mutualise les operations panier, calcule les totaux derives et persiste les donnees client.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React, { createContext, useEffect, useMemo, useState, useContext } from "react";
 import { AuthContext } from "./authContext.jsx";
 import { getDiscountedPrice } from "../utils/discounts.js";

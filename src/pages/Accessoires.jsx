@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/Accessoires.css";
 
 const Accessoires = () => {
     return (
@@ -39,3 +40,6 @@ const Accessoires = () => {
 };
 
 export default Accessoires;
+
+
+

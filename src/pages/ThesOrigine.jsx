@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/ThesOrigine.css";
 
 const ThesOrigine = () => {
     return (
@@ -39,3 +40,6 @@ const ThesOrigine = () => {
 };
 
 export default ThesOrigine;
+
+
+

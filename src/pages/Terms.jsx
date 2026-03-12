@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/Terms.css";
 
 const Terms = () => {
     return (
@@ -39,3 +40,6 @@ const Terms = () => {
 };
 
 export default Terms;
+
+
+

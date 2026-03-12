@@ -8,7 +8,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App.jsx";
-import "./index.css";
+import "./styles/global.css";
+import "./styles/theme.css";
 
 const THEME_STORAGE_KEY = "cafthe_theme";
 const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);

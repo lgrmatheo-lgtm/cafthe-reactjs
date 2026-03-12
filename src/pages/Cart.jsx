@@ -1,20 +1,19 @@
-ï»¿/**
+/**
  * @file Cart.jsx
  * Role: Panier utilisateur.
  * Comment c est fait: Affiche les lignes panier, applique code promo et calcule le total final.
  * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
  */
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
-import { AuthContext } from "../context/authContext.jsx";
 import { CartContext } from "../context/cartContext.jsx";
 import { getDiscountedPrice, getDiscountPercent } from "../utils/discounts.js";
 import { getShippingCost } from "../utils/shipping.js";
+import CheckoutTunnel from "../components/CheckoutTunnel.jsx";
+import "../styles/Cart.css";
 
 const Cart = () => {
     const navigate = useNavigate();
-    const { isAuthenticated } = useContext(AuthContext);
     const { items, addItem, decreaseItem, removeItem, totalPrice, totalItems } = useContext(CartContext);
     const [promoCode, setPromoCode] = useState("");
     const [promoApplied, setPromoApplied] = useState(null);
@@ -23,6 +22,10 @@ const Cart = () => {
     const shipping = useMemo(() => getShippingCost(totalItems, "standard"), [totalItems]);
     const discount = promoApplied ? promoApplied.amount : 0;
     const total = Math.max(0, subtotal + shipping - discount);
+
+    useEffect(() => {
+        document.title = "Mon panier | CafThe";
+    }, []);
 
     const handleApplyPromo = (event) => {
         event.preventDefault();
@@ -41,16 +44,9 @@ const Cart = () => {
 
     return (
         <main className="cart-page">
-            <Helmet>
-                <title>Mon panier | CafThe</title>
-                <meta
-                    name="description"
-                    content="Consultez et modifiez votre panier CafThe."
-                />
-                <meta name="robots" content="noindex, nofollow" />
-            </Helmet>
             <div className="breadcrumb">Accueil / Panier</div>
             <h1>Mon panier ({items.length} articles)</h1>
+            <CheckoutTunnel activeStep={1} />
 
             <div className="cart-layout">
                 <section className="cart-items">
@@ -68,7 +64,7 @@ const Cart = () => {
                                 <img src={item.image} alt={item.name} />
                                 <div className="cart-item-info">
                                     <h3>{item.name}</h3>
-                                    <p>{item.variant ? `Poids: ${item.variant}` : "UnitÃ©"}</p>
+                                    <p>{item.variant ? `Poids: ${item.variant}` : "Unité"}</p>
                                     <div className="cart-qty">
                                         <button type="button" onClick={() => decreaseItem(item.key ?? item.id)}>-</button>
                                         <span>{item.quantity}</span>
@@ -86,18 +82,18 @@ const Cart = () => {
                                         }}
                                         aria-label="Supprimer"
                                     >
-                                        âœ•
+                                        ?
                                     </button>
                                     <div className="price-unit">
                                         {getDiscountPercent(item.id) > 0 && (
-                                            <span className="price-old">{item.price.toFixed(2)} â‚¬</span>
+                                            <span className="price-old">{item.price.toFixed(2)} €</span>
                                         )}
                                         <span className="price-new">
-                                            {getDiscountedPrice(item.price, item.id).toFixed(2)} â‚¬ / unitÃ©
+                                            {getDiscountedPrice(item.price, item.id).toFixed(2)} € / unité
                                         </span>
                                     </div>
                                     <div className="price-total">
-                                        {(getDiscountedPrice(item.price, item.id) * item.quantity).toFixed(2)} â‚¬
+                                        {(getDiscountedPrice(item.price, item.id) * item.quantity).toFixed(2)} €
                                     </div>
                                 </div>
                             </article>
@@ -120,51 +116,40 @@ const Cart = () => {
                         )}
                         {promoApplied && !promoApplied.invalid && (
                             <span className="promo-success">
-                                Code {promoApplied.code} appliquÃ© (-{discount.toFixed(2)} â‚¬)
+                                Code {promoApplied.code} appliqué (-{discount.toFixed(2)} €)
                             </span>
                         )}
                     </form>
                 </section>
 
                 <aside className="cart-summary">
-                    <h2>RÃ©capitulatif</h2>
+                    <h2>Récapitulatif</h2>
                     <div className="summary-row">
                         <span>Sous-total</span>
-                        <span>{subtotal.toFixed(2)} â‚¬</span>
+                        <span>{subtotal.toFixed(2)} €</span>
                     </div>
                     <div className="summary-row">
                         <span>Livraison</span>
-                        <span>{shipping.toFixed(2)} â‚¬</span>
+                        <span>{shipping.toFixed(2)} €</span>
                     </div>
                     {discount > 0 && (
                         <div className="summary-row">
                             <span>Remise</span>
-                            <span>-{discount.toFixed(2)} â‚¬</span>
+                            <span>-{discount.toFixed(2)} €</span>
                         </div>
                     )}
                     <div className="summary-total">
                         <span>Total TTC</span>
-                        <span>{total.toFixed(2)} â‚¬</span>
+                        <span>{total.toFixed(2)} €</span>
                     </div>
-                    {isAuthenticated ? (
-                        <button
-                            type="button"
-                            className="checkout"
-                            onClick={() => navigate("/profil")}
-                        >
-                            Voir mon compte
-                        </button>
-                    ) : (
+                    {items.length > 0 && (
                         <>
                             <button
                                 type="button"
                                 className="checkout"
-                                onClick={() => navigate("/login")}
+                                onClick={() => navigate("/checkout/livraison")}
                             >
-                                Se connecter
-                            </button>
-                            <button type="button" className="continue" onClick={() => navigate("/inscription")}>
-                                CrÃ©er un compte
+                                Passser la commande
                             </button>
                         </>
                     )}
@@ -183,3 +168,6 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
+

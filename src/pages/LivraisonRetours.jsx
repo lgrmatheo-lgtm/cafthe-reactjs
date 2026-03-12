@@ -1,11 +1,7 @@
-/**
- * @file LivraisonRetours.jsx
- * Role: Page Livraison et retours.
- * Comment c est fait: Parametre InfoPage avec les regles logistiques et SAV.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
+
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/LivraisonRetours.css";
 
 const LivraisonRetours = () => {
     return (
@@ -38,4 +34,8 @@ const LivraisonRetours = () => {
     );
 };
 
-export default LivraisonRetours;
+export default LivraisonRetours;
+
+
+
+

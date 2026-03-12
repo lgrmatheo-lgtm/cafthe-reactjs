@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext.jsx";
+import "../styles/Account.css";
 
 const ordersStorageKey = "cafthe_orders";
 const addressesStorageKey = "cafthe_addresses";
@@ -604,3 +605,6 @@ const Account = () => {
 };
 
 export default Account;
+
+
+

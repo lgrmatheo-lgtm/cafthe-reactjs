@@ -6,6 +6,7 @@
  */
 import React from "react";
 import InfoPage from "../components/InfoPage.jsx";
+import "../styles/Nouveautes.css";
 
 const Nouveautes = () => {
     return (
@@ -39,3 +40,6 @@ const Nouveautes = () => {
 };
 
 export default Nouveautes;
+
+
+

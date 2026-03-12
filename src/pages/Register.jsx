@@ -6,17 +6,24 @@
  */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Register.css";
 
 const Register = () => {
     const navigate = useNavigate();
     const [nomComplet, setNomComplet] = useState("");
     const [email, setEmail] = useState("");
     const [motDePasse, setMotDePasse] = useState("");
+    const [acceptePolConf, setAcceptePolConf] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMsg("");
+
+        if (!acceptePolConf) {
+            setErrorMsg("Vous devez accepter la politique de confidentialité.");
+            return;
+        }
 
         try {
             const response = await fetch(
@@ -86,15 +93,30 @@ const Register = () => {
                                 placeholder="••••••••"
                                 onChange={(e) => setMotDePasse(e.target.value)}
                             />
-                            <span className="auth-hint">Au moins 8 caractères</span>
+                            <span className="auth-hint">Au moins 12 caractères</span>
                         </label>
                         <Link to="/contact" className="auth-forgot">
                             Mot de passe oublié ?
                         </Link>
 
+                        <div className="auth-checkbox">
+                            <input
+                                type="checkbox"
+                                id="polConf"
+                                checked={acceptePolConf}
+                                onChange={(e) => setAcceptePolConf(e.target.checked)}
+                            />
+                            <label htmlFor="polConf">
+                                
+                                <Link to="/privacy" target="_blank">
+                                 J'accepte la politique de confidentialité
+                                </Link>
+                            </label>
+                        </div>
+
                         {errorMsg && <div className="error-message">{errorMsg}</div>}
 
-                        <button type="submit" className="auth-submit">
+                        <button type="submit" className="auth-submit" disabled={!acceptePolConf}>
                             S'inscrire →
                         </button>
                     </form>
@@ -116,3 +138,5 @@ const Register = () => {
 };
 
 export default Register;
+
+

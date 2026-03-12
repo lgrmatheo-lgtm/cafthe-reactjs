@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/cartContext.jsx";
 import { SearchContext } from "../context/searchContext.jsx";
 import { getDiscountPercent, getDiscountedPrice } from "../utils/discounts.js";
+import "../styles/index.css";
 
 const heroImage = "https://images.unsplash.com/photo-1582200371328-11d78e4cea8d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const universItems = [
@@ -211,7 +212,11 @@ const Home = () => {
                                                 <button
                                                     type="button"
                                                     className="ghost"
-                                                    onClick={() => navigate(`/produit/${item.id}`)}
+                                                    onClick={() =>
+                                                        navigate(`/produit/${item.id}`, {
+                                                            state: { product: item },
+                                                        })
+                                                    }
                                                 >
                                                     Détails
                                                 </button>
@@ -305,3 +310,6 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
