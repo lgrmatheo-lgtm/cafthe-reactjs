@@ -165,7 +165,7 @@
 }
 
 .account-dropdown button {
-    text-align: left;
+    text-align: center;
     padding: 8px 10px;
     border-radius: 10px;
     background: #f4efeb;
@@ -215,6 +215,7 @@
 }
 
 .cart-drawer.open {
+    width: 25rem;
     opacity: 1;
     transform: translateY(0);
     pointer-events: all;

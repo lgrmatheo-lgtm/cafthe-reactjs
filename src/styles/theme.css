@@ -256,6 +256,7 @@ html[data-theme="dark"] button:not(.primary):not(.navbar-icon):not(.navbar-cart-
 html[data-theme="dark"] button:not(.primary):not(.navbar-icon):not(.navbar-cart-icon):not(.icon-button):not(.theme-toggle):not(.section-link):not(.account-close):hover {
     color: var(--dark);
     transform: translateY(-1px);
+    background: var(--accent);
 }
 
 html[data-theme="dark"] .primary,

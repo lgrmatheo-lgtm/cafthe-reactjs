@@ -157,7 +157,7 @@
 }
 
 .payment-methods button.active {
-    border-color: #0f8f4a;
+    border-color: #b28b6a;
 }
 
 .confirm-card {
@@ -193,8 +193,8 @@
 }
 
 .delivery-modes button.active {
-    border-color: #0f8f4a;
-    background: #f0faf4;
+    border: 1px solid #e0dbd7;
+    background: #b28a6a20;
 }
 
 .pickup-note,

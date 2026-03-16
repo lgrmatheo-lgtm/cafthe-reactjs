@@ -29,7 +29,7 @@ const normalizeProduct = (produit) => {
         produit.categorie ??
         produit.type ??
         produit.famille ??
-        "Catégorie";
+        "CatÃ©gorie";
     const origin =
         produit.origine ??
         produit.pays ??
@@ -129,7 +129,7 @@ const ProductDetails = () => {
                 const items = (data.article ?? data.articles ?? []).map(normalizeProduct);
                 setRelated(items.filter((item) => String(item.id) !== String(id)).slice(0, 3));
             } catch (err) {
-                console.error("Erreur lors du chargement des produits complémentaires :", err);
+                console.error("Erreur lors du chargement des produits complÃ©mentaires :", err);
             }
         };
 
@@ -179,7 +179,7 @@ const ProductDetails = () => {
                     <h3> Une erreur est survenue</h3>
                     <p>{error}</p>
                     <Link to="/" className="back-link">
-                        Retour à l'accueil
+                        Retour Ã  l'accueil
                     </Link>
                 </div>
             </div>
@@ -214,12 +214,12 @@ const ProductDetails = () => {
                     <h1>{produit.name}</h1>
                     <div className="product-price">
                         {discount > 0 && (
-                            <span className="price-old">{unitBasePrice.toFixed(2)} €</span>
+                            <span className="price-old">{unitBasePrice.toFixed(2)} â‚¬</span>
                         )}
-                        <span className="price-new">{discountedPrice.toFixed(2)} €</span>
-                        <span className="price-note">Stock {produit.stock} unités</span>
+                        <span className="price-new">{discountedPrice.toFixed(2)} â‚¬</span>
+                        <span className="price-note">Stock {produit.stock} unitÃ©s</span>
                     </div>
-                    <p>{produit.description || "Un café ou thé d'exception, sélectionné pour son profil aromatique unique."}</p>
+                    <p>{produit.description || "Un cafÃ© ou thÃ© d'exception, sÃ©lectionnÃ© pour son profil aromatique unique."}</p>
 
                     <div className="product-weights">
                         {"100g 250g 500g 1kg".split(" ").map((weight) => (
@@ -255,15 +255,15 @@ const ProductDetails = () => {
                                 }
                             }}
                         >
-                            Ajouter au panier ({totalPrice.toFixed(2)} €)
+                            Ajouter au panier ({totalPrice.toFixed(2)} â‚¬)
                         </button>
                     </div>
-                    <div className="price-note">Prix calculé selon poids et quantité.</div>
+                    <div className="price-note">Prix calculÃ© selon poids et quantitÃ©.</div>
 
                     <ul className="product-highlights">
                         <li>Origine: {produit.origin}</li>
-                        <li>Torréfaction artisanale</li>
-                        <li>Livraison offerte dès 50 €</li>
+                        <li>TorrÃ©faction artisanale</li>
+                        <li>Livraison offerte dÃ¨s 50 â‚¬</li>
                     </ul>
                 </div>
             </section>
@@ -275,14 +275,14 @@ const ProductDetails = () => {
                 </div>
                 <div className="reviews-grid">
                     {[
-                        "Un profil aromatique délicat, parfait pour le matin.",
-                        "Très bon équilibre, livraison rapide et soignée.",
-                        "Goût authentique, je recommande vivement.",
+                        "Un profil aromatique dÃ©licat, parfait pour le matin.",
+                        "TrÃ¨s bon Ã©quilibre, livraison rapide et soignÃ©e.",
+                        "GoÃ»t authentique, je recommande vivement.",
                     ].map((review, index) => (
                         <div key={index} className="review-card">
-                            <div className="review-rating">?????</div>
+                            <div className="review-rating">â˜…â˜…â˜…â˜…â˜…</div>
                             <p>{review}</p>
-                            <span>Client vérifié</span>
+                            <span>Client vÃ©rifiÃ©</span>
                         </div>
                     ))}
                 </div>
@@ -290,7 +290,7 @@ const ProductDetails = () => {
 
             <section className="product-related">
                 <div className="section-header">
-                    <h2>Produits complémentaires</h2>
+                    <h2>Produits complÃ©mentaires</h2>
                     <button type="button" className="section-link">Voir plus</button>
                 </div>
                 <div className="related-grid">
@@ -309,9 +309,9 @@ const ProductDetails = () => {
                                     <h3>{item.name}</h3>
                                     <span className="price-stack">
                                         {relatedDiscount > 0 && (
-                                            <span className="price-old">{item.price.toFixed(2)} €</span>
+                                            <span className="price-old">{item.price.toFixed(2)} â‚¬</span>
                                         )}
-                                        <span className="price-new">{relatedPrice.toFixed(2)} €</span>
+                                        <span className="price-new">{relatedPrice.toFixed(2)} â‚¬</span>
                                     </span>
                                 </div>
                                 <button type="button">Ajouter</button>

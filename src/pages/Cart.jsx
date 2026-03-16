@@ -64,7 +64,7 @@ const Cart = () => {
                                 <img src={item.image} alt={item.name} />
                                 <div className="cart-item-info">
                                     <h3>{item.name}</h3>
-                                    <p>{item.variant ? `Poids: ${item.variant}` : "Unité"}</p>
+                                    <p>{item.variant ? `Poids: ${item.variant}` : "UnitÃ©"}</p>
                                     <div className="cart-qty">
                                         <button type="button" onClick={() => decreaseItem(item.key ?? item.id)}>-</button>
                                         <span>{item.quantity}</span>
@@ -82,18 +82,18 @@ const Cart = () => {
                                         }}
                                         aria-label="Supprimer"
                                     >
-                                        ?
+                                        Ã—
                                     </button>
                                     <div className="price-unit">
                                         {getDiscountPercent(item.id) > 0 && (
-                                            <span className="price-old">{item.price.toFixed(2)} €</span>
+                                            <span className="price-old">{item.price.toFixed(2)} â‚¬</span>
                                         )}
                                         <span className="price-new">
-                                            {getDiscountedPrice(item.price, item.id).toFixed(2)} € / unité
+                                            {getDiscountedPrice(item.price, item.id).toFixed(2)} â‚¬ / unitÃ©
                                         </span>
                                     </div>
                                     <div className="price-total">
-                                        {(getDiscountedPrice(item.price, item.id) * item.quantity).toFixed(2)} €
+                                        {(getDiscountedPrice(item.price, item.id) * item.quantity).toFixed(2)} â‚¬
                                     </div>
                                 </div>
                             </article>
@@ -116,31 +116,31 @@ const Cart = () => {
                         )}
                         {promoApplied && !promoApplied.invalid && (
                             <span className="promo-success">
-                                Code {promoApplied.code} appliqué (-{discount.toFixed(2)} €)
+                                Code {promoApplied.code} appliquÃ© (-{discount.toFixed(2)} â‚¬)
                             </span>
                         )}
                     </form>
                 </section>
 
                 <aside className="cart-summary">
-                    <h2>Récapitulatif</h2>
+                    <h2>RÃ©capitulatif</h2>
                     <div className="summary-row">
                         <span>Sous-total</span>
-                        <span>{subtotal.toFixed(2)} €</span>
+                        <span>{subtotal.toFixed(2)} â‚¬</span>
                     </div>
                     <div className="summary-row">
                         <span>Livraison</span>
-                        <span>{shipping.toFixed(2)} €</span>
+                        <span>{shipping.toFixed(2)} â‚¬</span>
                     </div>
                     {discount > 0 && (
                         <div className="summary-row">
                             <span>Remise</span>
-                            <span>-{discount.toFixed(2)} €</span>
+                            <span>-{discount.toFixed(2)} â‚¬</span>
                         </div>
                     )}
                     <div className="summary-total">
                         <span>Total TTC</span>
-                        <span>{total.toFixed(2)} €</span>
+                        <span>{total.toFixed(2)} â‚¬</span>
                     </div>
                     {items.length > 0 && (
                         <>
@@ -149,7 +149,7 @@ const Cart = () => {
                                 className="checkout"
                                 onClick={() => navigate("/checkout/livraison")}
                             >
-                                Passser la commande
+                                Passer la commande
                             </button>
                         </>
                     )}

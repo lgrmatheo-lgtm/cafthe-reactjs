@@ -1206,7 +1206,7 @@ input {
   gap:32px}
 .product-hero {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr ;
   gap:32px}
 .product-gallery {
   display:grid;
