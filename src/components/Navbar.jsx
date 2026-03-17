@@ -25,6 +25,7 @@ const Navbar = () => {
     const { query, setQuery } = useContext(SearchContext);
     const [isAccountOpen, setIsAccountOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [theme, setTheme] = useState(getInitialTheme);
     const accountRef = useRef(null);
 
@@ -46,6 +47,10 @@ const Navbar = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [isAccountOpen]);
+
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+    }, [location.pathname]);
 
     const handleLogout = () => {
         logout();
@@ -158,12 +163,24 @@ const Navbar = () => {
     );
 
     return (
-        <nav className={`navbar${isAccountOpen ? " account-open" : ""}`}>
+        <nav className={`navbar${isAccountOpen ? " account-open" : ""}${isMobileMenuOpen ? " mobile-open" : ""}`}>
             <div className="navbar-left">
                 <Link to="/" className="navbar-brand">
                     {logoContent}
                 </Link>
             </div>
+
+            <button
+                type="button"
+                className={`navbar-burger${isMobileMenuOpen ? " open" : ""}`}
+                onClick={() => setIsMobileMenuOpen((open) => !open)}
+                aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                aria-expanded={isMobileMenuOpen}
+            >
+                <span />
+                <span />
+                <span />
+            </button>
 
             <form className="navbar-search" onSubmit={handleSearchSubmit}>
                 <span className="icon">
