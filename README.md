@@ -1,6 +1,6 @@
 # CafThe
 
-Boutique e-commerce cafe/the en React + Vite, realisee dans un cadre d apprentissage (dev junior / apprenti).
+Boutique e-commerce cafe/the en React + Vite, realisee dans un cadre d'une certification frontend.
 
 ## Prerequis
 
