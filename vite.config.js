@@ -5,8 +5,6 @@ import { fileURLToPath, URL } from "node:url";
 
 const require = createRequire(import.meta.url);
 
-// Fallback dev: si react-helmet-async n'est pas installe, on mappe vers un shim local.
-// Des que le package existe dans node_modules, Vite utilise automatiquement la vraie lib.
 const alias = {};
 try {
     require.resolve("react-helmet-async");
@@ -16,8 +14,12 @@ try {
     );
 }
 
-// https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],
     resolve: { alias },
+    test: {
+        environment: "jsdom",
+        globals: true,
+        setupFiles: "./vitest.setup.js",
+    },
 });

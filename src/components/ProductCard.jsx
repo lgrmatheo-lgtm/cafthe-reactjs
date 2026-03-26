@@ -1,9 +1,3 @@
-/**
- * @file ProductCard.jsx
- * Role: Carte produit reutilisable.
- * Comment c est fait: Affiche un produit de facon uniforme et gere la navigation vers sa fiche detail.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React from "react";
 import { Link } from "react-router-dom";
 import { getProductImage } from "../utils/productImages.js";

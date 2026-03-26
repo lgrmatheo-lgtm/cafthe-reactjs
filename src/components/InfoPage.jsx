@@ -1,9 +1,3 @@
-/**
- * @file InfoPage.jsx
- * Role: Composant de page informative generique.
- * Comment c est fait: Reutilise un meme squelette pour toutes les pages statiques (FAQ, CGV, privacy, etc.).
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React from "react";
 import { Link } from "react-router-dom";
 

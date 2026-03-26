@@ -1,9 +1,3 @@
-/**
- * @file main.jsx
- * Role: Point d entree React.
- * Comment c est fait: Initialise le rendu dans #root et place HelmetProvider autour de App pour piloter le SEO dynamiquement.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";

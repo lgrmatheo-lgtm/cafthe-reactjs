@@ -1,4 +1,4 @@
-.navbar {
+﻿.navbar {
     background: #faf6f1;
     position: sticky;
     top: 0;
@@ -9,7 +9,7 @@
     gap: 32px;
     padding: 2px 56px 2px 10px;
     border-bottom: 1px solid #dbd2cc;
-    overflow: visible; /* ← était "hidden", c'était le coupable */
+    overflow: visible; 
 }
 
 .navbar-brand img,
@@ -97,16 +97,21 @@
 }
 
 .navbar-burger.open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+  top: 6px;
+  transform: rotate(45deg);
 }
+
 
 .navbar-burger.open span:nth-child(2) {
     opacity: 0;
 }
 
+
 .navbar-burger.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+  top: -6px;
+  transform: rotate(-45deg);
 }
+
 
 .navbar-link {
     font-size: 0.95rem;
@@ -455,7 +460,7 @@
 
 @media (max-width: 960px) {
 
-  /* ─── BURGER VISIBLE ─── */
+  
 .navbar-burger {
   display: inline-flex !important;
   flex-direction: column;
@@ -501,7 +506,7 @@
   transform: rotate(-45deg);
 }
 
-  /* ─── NAVBAR BASE MOBILE ─── */
+  
   .navbar {
     display: flex;
     flex-direction: column;
@@ -511,7 +516,7 @@
     gap: 0;
   }
 
-  /* ─── LOGO CENTRÉ ─── */
+  
   .navbar-left {
     width: 100%;
     display: flex;
@@ -527,7 +532,7 @@
     transform: none;
   }
 
-  /* ─── SEARCH + ACTIONS cachés par défaut ─── */
+  
   .navbar-search {
     display: none;
   }
@@ -536,7 +541,7 @@
     display: none;
   }
 
-  /* ─── MENU OUVERT ─── */
+  
   .navbar.mobile-open {
     position: fixed;
     inset: 0;
@@ -550,7 +555,7 @@
     gap: 0;
   }
 
-  /* ─── LOGO dans menu ouvert ─── */
+  
   .navbar.mobile-open .navbar-left {
     width: 100%;
     display: flex;
@@ -558,7 +563,7 @@
     margin-bottom: 24px;
   }
 
-  /* ─── SEARCH visible et centrée ─── */
+  
   .navbar.mobile-open .navbar-search {
     display: flex;
     width: 100%;
@@ -572,7 +577,7 @@
     min-width: 0;
   }
 
-  /* ─── ACTIONS visibles ─── */
+  
   .navbar.mobile-open .navbar-actions {
     display: flex;
     flex-direction: column;
@@ -581,7 +586,7 @@
     gap: 16px;
   }
 
-  /* ─── LIENS centrés ─── */
+  
   .navbar.mobile-open .navbar-link {
     font-size: 1.1rem;
     text-align: center;
@@ -603,7 +608,7 @@
     }
   }
 
-  /* ─── ACCOUNT + CART + THEME côte à côte centrés ─── */
+  
   .navbar.mobile-open .navbar-account,
   .navbar.mobile-open .navbar-cart-icon,
   .navbar.mobile-open .theme-toggle {
@@ -615,7 +620,7 @@
   .navbar.mobile-open .navbar-cart-icon { order: 2; }
   .navbar.mobile-open .theme-toggle { order: 3; margin-top: 4px; }
 
-  /* ─── CART DRAWER ─── */
+  
   .cart-drawer {
     right: auto;
     left: 50%;
@@ -637,7 +642,7 @@
     align-items: stretch;
   }
 
-  /* ─── ACCOUNT DROPDOWN ─── */
+  
   .account-dropdown {
     right: auto;
     left: 50%;

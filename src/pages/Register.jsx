@@ -1,9 +1,3 @@
-/**
- * @file Register.jsx
- * Role: Inscription utilisateur.
- * Comment c est fait: Valide le formulaire de creation de compte puis enchaine vers connexion ou espace client.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Register.css";
@@ -25,6 +19,15 @@ const Register = () => {
             return;
         }
 
+        const parts = nomComplet.trim().split(/\s+/).filter(Boolean);
+        const prenom = parts.shift() || "";
+        const nom = parts.join(" ");
+
+        if (!prenom || !nom) {
+            setErrorMsg("Veuillez saisir votre prenom et votre nom.");
+            return;
+        }
+
         try {
             const response = await fetch(
                 `${import.meta.env.VITE_API_URL}/api/clients/register`,
@@ -33,7 +36,8 @@ const Register = () => {
                     headers: { "Content-Type": "application/json" },
                     credentials: "include",
                     body: JSON.stringify({
-                        nom: nomComplet,
+                        nom,
+                        prenom,
                         email,
                         mot_de_passe: motDePasse,
                     }),
@@ -61,7 +65,7 @@ const Register = () => {
                     <h1>Créer un compte</h1>
                     <p className="auth-subtitle">Rejoignez la communauté CafThé.</p>
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} noValidate>
                         <label>
                             Nom complet
                             <input
@@ -116,7 +120,11 @@ const Register = () => {
 
                         {errorMsg && <div className="error-message">{errorMsg}</div>}
 
-                        <button type="submit" className="auth-submit" disabled={!acceptePolConf}>
+                        <button
+                            type="submit"
+                            className="auth-submit"
+                            aria-disabled={!acceptePolConf}
+                        >
                             S'inscrire →
                         </button>
                     </form>
@@ -138,5 +146,6 @@ const Register = () => {
 };
 
 export default Register;
+
 
 

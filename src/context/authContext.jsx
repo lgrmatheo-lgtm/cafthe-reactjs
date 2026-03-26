@@ -1,9 +1,3 @@
-/**
- * @file authContext.jsx
- * Role: Source de verite pour l authentification.
- * Comment c est fait: Expose user/login/logout, persiste la session et garde l app synchronisee avec le statut de connexion.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext(null);
@@ -12,7 +6,6 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Verifie si un cookie de session valide existe
     useEffect(() => {
         const checkSession = async () => {
             try {

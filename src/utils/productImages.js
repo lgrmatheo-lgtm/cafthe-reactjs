@@ -1,10 +1,4 @@
-/**
- * @file productImages.js
- * Role: Resolution d image produit intelligente.
- * Comment c est fait: Mappe image par id/nom/categorie puis applique fallback robuste si aucune correspondance exacte.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
-const PRODUCT_IMAGE_MAP = {
+﻿const PRODUCT_IMAGE_MAP = {
     "1": "/img/products/1-arabica.jpg",
     "2": "/img/products/2-robusta.jpg",
     "3": "/img/products/3-moka.jpg",
@@ -162,3 +156,4 @@ export const getProductImage = (produit) => {
     const list = CATEGORY_FALLBACKS[categoryKey] || CATEGORY_FALLBACKS.fallback;
     return pickImage(list, seed);
 };
+

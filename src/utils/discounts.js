@@ -1,10 +1,4 @@
-/**
- * @file discounts.js
- * Role: Utilitaires de remise.
- * Comment c est fait: Calcule un taux de reduction stable et fournit les helpers de prix avec/sans promo.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
-const hashId = (value) => {
+﻿const hashId = (value) => {
     const str = String(value ?? "");
     let hash = 0;
     for (let i = 0; i < str.length; i += 1) {
@@ -26,3 +20,4 @@ export const getDiscountedPrice = (price, id) => {
     if (!percent) return price;
     return price * (1 - percent / 100);
 };
+

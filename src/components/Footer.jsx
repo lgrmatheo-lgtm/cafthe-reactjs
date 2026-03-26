@@ -1,9 +1,3 @@
-/**
- * @file Footer.jsx
- * Role: Pied de page du site.
- * Comment c est fait: Expose les liens produits, aide, legal et acces dashboard avec une structure reusable.
- * Note junior: commence par ce resume, puis lis les hooks et les handlers dans l ordre.
- */
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Footer.css";
